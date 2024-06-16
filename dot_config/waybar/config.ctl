@@ -1,0 +1,2 @@
+1|28|bottom|( cpu memory custom/cpuinfo custom/gpuinfo ) ( idle_inhibitor clock )|( hyprland/workspaces hyprland )|( backlight network pulseaudio pulseaudio#microphone custom/updates custom/keybindhint ) ( tray battery ) 
+0|28|top|( cpu memory custom/cpuinfo custom/gpuinfo ) ( idle_inhibitor clock )|( hyprland/workspaces hyprland )|( backlight network pulseaudio pulseaudio#microphone custom/updates custom/keybindhint ) ( tray battery ) 
