@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ ! -f "/home/faz/.config/chezmoi/key.txt" ]; then
+    mkdir -p "/home/faz/.config/chezmoi"
+    chezmoi age decrypt --output "/home/faz/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+    chmod 600 "/home/faz/.config/chezmoi/key.txt"
+fi
