@@ -9,5 +9,10 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
+
+# FAZuH
 alias v=nvim
 alias vi=nvim
+
+export EDITOR="nvim"
+
