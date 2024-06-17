@@ -3,3 +3,5 @@
 	name = FAZuH
 [core]
 	editor = nvim
+[alias]
+	lg = log --graph --decorate --pretty=oneline --abbrev-commit --all
