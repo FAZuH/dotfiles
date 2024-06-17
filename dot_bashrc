@@ -16,3 +16,7 @@ alias vi=nvim
 
 export EDITOR="nvim"
 
+function cdwhich() {
+  cd "$(dirname $(which $1))"
+}
+
