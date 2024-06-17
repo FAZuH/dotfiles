@@ -90,6 +90,7 @@ alias mkdir='mkdir -p'
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
+alias t=tmux
 
 export EDITOR="nvim"
 
