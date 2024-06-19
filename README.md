@@ -53,13 +53,17 @@ git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE && cd ~/Hy
 #### Commands
 
 ```bash
-yay -S chezmoi age
+cd ~ && yay -S chezmoi age
 
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FAZuH
-
-sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init FAZuH
 
 eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519
+
+chezmoi cd && git remote set-url origin git@github.com:FAZuH/dotfiles.git && chezmoi apply
+
+exit
+
+sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
 
 # non NVIDIA GPU
 sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
