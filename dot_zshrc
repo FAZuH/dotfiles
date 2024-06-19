@@ -106,8 +106,13 @@ function tconf() {
   tmux attach -t conf
 }
 
+function tfbot() {
+  tmux attach -t fazbot
+}
+
 function loadcreds() {
   mkdir -p ~/mount/credentials && rclone mount gdrive:credentials ~/mount/credentials --allow-non-empty
 }
 
 export PATH=$PATH:/home/faz/.spicetify
+
