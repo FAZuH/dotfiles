@@ -14,6 +14,8 @@ opt.autoindent = true
 
 opt.wrap = false
 
+opt.virtualedit = "block"
+
 -- search settings
 opt.ignorecase = true
 opt.smartcase = true
