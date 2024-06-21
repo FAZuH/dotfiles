@@ -82,9 +82,6 @@ yay -R code && yay -S visual-studio-code-bin --noconfirm
 # Mariadb
 yay -S mariadb --noconfirm && mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql && echo "auto-rehash" | sudo tee -a /etc/my.cnf.d/client.cnf && sudo systemctl restart mariadb
 
-# Apps
-yay -S hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget chromium cava btop neofetch ani-cli mov-cli neovim kitty ranger encryptpad rclone rclone-browser pavucontrol zathura zathura-pdf-mupdf ranger nautilus --noconfirm
-
 # Tmux & Neovim
 yay -S tmux ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --noconfirm && sudo luarocks install persistence.nvim && sudo npm install -g eslint @biomejs/biome && tmux && tmux source-file ~/.tmux.conf
 # \<prefix>I to install plugins on tmux. source-file then.
@@ -92,20 +89,23 @@ yay -S tmux ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --n
 # SDDM Theme
 sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme && sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
 
-# Apps
-yay -S jdk21-openjdk multimc-bin whatsie obsidian --noconfirm
-
 # Spotify
 yay -S spotify spicetify-cli --noconfirm && sudo chmod a+wr /opt/spotify && sudo chmod a+wr /opt/spotify/Apps -R
 
 # OCR
 yay -S python-pip && sudo rm /usr/lib/python3.12/EXTERNALLY-MANAGED && pip install pix2tex && yay -S tesseract tesseract-eng-data tesseract-data-jpn --noconfirm
 
-# IDE
-yay -S intellij-idea-community-edition intellij-idea-ultimate-edition pycharm-community-edition pycharm-professional android-studio virtualbox virtualbox-host-modules-arch qbittorrent-git ventoy-bin --noconfirm && sudo /sbin/vboxreload
-
 # Download chromium and download LINE
 yay -S chromium --noconfirm && chromium https://chromewebstore.google.com/detail/line/ophjlpahpchlmihnnnihgmmeilfjmjjc?hl=en
+
+# Apps
+yay -S hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget chromium \
+    cava btop neofetch ani-cli mov-cli neovim kitty ranger encryptpad rclone \
+    rclone-browser pavucontrol zathura zathura-pdf-mupdf ranger nautilus nchat \
+    multimc-bin whatsie obsidian obs-studio --noconfirm
+
+# Heavy Apps
+yay -S jdk21-openjdk intellij-idea-community-edition intellij-idea-ultimate-edition pycharm-community-edition pycharm-professional android-studio virtualbox virtualbox-host-modules-arch qbittorrent-git ventoy-bin --noconfirm && sudo /sbin/vboxreload
 ```
 
 #### Setup SSH
