@@ -114,5 +114,9 @@ function loadcreds() {
   mkdir -p ~/mount/credentials && rclone mount gdrive:credentials ~/mount/credentials --allow-non-empty
 }
 
+function ldu() {
+  du -sh ./*
+}
+
 export PATH=$PATH:/home/faz/.spicetify
 
