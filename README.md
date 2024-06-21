@@ -102,7 +102,7 @@ yay -S chromium --noconfirm && chromium https://chromewebstore.google.com/detail
 yay -S hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget chromium \
     cava btop neofetch ani-cli mov-cli neovim kitty ranger encryptpad rclone \
     rclone-browser pavucontrol zathura zathura-pdf-mupdf ranger nautilus nchat \
-    multimc-bin whatsie obsidian obs-studio --noconfirm
+    multimc-bin whatsie obsidian obs-studio noise-suppression-for-voice --noconfirm
 
 # Heavy Apps
 yay -S jdk21-openjdk intellij-idea-community-edition intellij-idea-ultimate-edition pycharm-community-edition pycharm-professional android-studio virtualbox virtualbox-host-modules-arch qbittorrent-git ventoy-bin --noconfirm && sudo /sbin/vboxreload
