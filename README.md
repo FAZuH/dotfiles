@@ -62,7 +62,7 @@ echo -e "[Theme]\nCurrent=sddm-astronaut-theme" | sudo tee /etc/sddm.conf
 
 # non NVIDIA GPU
 sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
-# NVIDIA GPU
+# NVIDIA GPU below
 sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="nvidia_drm.modeset=1"/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'source = ~/.config/hypr/nvidia.conf' >> ~/.config/hypr/hyprland.conf
