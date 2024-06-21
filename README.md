@@ -93,7 +93,7 @@ yay -S tmux ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --n
 sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme && sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
 
 # Apps
-yay -S jdk21-openjdk multimc-bin whatsie --noconfirm
+yay -S jdk21-openjdk multimc-bin whatsie obsidian --noconfirm
 
 # Spotify
 yay -S spotify spicetify-cli --noconfirm && sudo chmod a+wr /opt/spotify && sudo chmod a+wr /opt/spotify/Apps -R
