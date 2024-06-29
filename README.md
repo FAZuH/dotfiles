@@ -54,25 +54,18 @@ git remote set-url origin git@github.com:FAZuH/dotfiles.git && chezmoi apply
 
 exit
 
-sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-
-mkdir -p ~/.local/share/applications && echo -e "[Desktop Entry]\nVersion=1.0\nName=LINE\nComment=Line Messanger application\nExec=chromium --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html\nIcon=/home/faz/.config/chromium/Default/Extensions/ophjlpahpchlmihnnnihgmmeilfjmjjc/3.3.0_0/line_logo_128x128_on.png\nTerminal=false\nType=Application" | tee ~/.local/share/applications/line.desktop
-
-echo -e "[Theme]\nCurrent=sddm-astronaut-theme" | sudo tee /etc/sddm.conf
-
+cd ~/.local/share/chezmoi/Scripts
 # non NVIDIA GPU
-sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
+chmod +x nonnvidia.sh && ./nonnvidia.sh
 # NVIDIA GPU below
-sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="nvidia_drm.modeset=1"/' /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-echo 'source = ~/.config/hypr/nvidia.conf' >> ~/.config/hypr/hyprland.conf
-
-yay -S downgrade --noconfirm && sudo downgrade hyprland && reboot
+chmod +x nvidia.sh && ./nvidia.sh
 ```
 
 #### Download & Install Applications
 
 ```bash
+yay -S downgrade --noconfirm && sudo downgrade hyprland && reboot
+
 # Discord
 yay -S flatpak --noconfirm && flatpak install io.github.spacingbat3.webcord
 
@@ -81,6 +74,9 @@ yay -R code && yay -S visual-studio-code-bin --noconfirm
 
 # Mariadb
 yay -S mariadb --noconfirm && mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql && echo "auto-rehash" | sudo tee -a /etc/my.cnf.d/client.cnf && sudo systemctl restart mariadb
+
+# SDKman
+curl -s "https://get.sdkman.io" | bash
 
 # Tmux & Neovim
 yay -S tmux ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --noconfirm && sudo luarocks install persistence.nvim && sudo npm install -g eslint @biomejs/biome && tmux && tmux source-file ~/.tmux.conf
