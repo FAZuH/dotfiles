@@ -91,6 +91,7 @@ alias v=nvim
 alias vi=nvim
 alias vim=nvim
 alias t=tmux
+alias d=docker
 
 export EDITOR="nvim"
 
