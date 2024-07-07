@@ -33,3 +33,11 @@ keymap.set("n", "<leader>tl", "<cmd>tabclose<CR>", { desc = "close current tab" 
 keymap.set("n", "L", "<cmd>tabn<CR>", { desc = "go to next tab" })
 keymap.set("n", "H", "<cmd>tabp<CR>", { desc = "go to prev tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "open current buffer in new tab" })
+
+keymap.set("n", "<leader>po", ":PyrightOrganizeImports<CR>", { desc = "Organize python imports" })
+keymap.set(
+	"n",
+	"<leader>pp",
+	":PyrightSetPythonPath .venv/bin/python<CR>",
+	{ desc = "Set python path to workdir's .venv" }
+)

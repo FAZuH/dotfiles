@@ -1,5 +1,6 @@
 return {
 	"NeogitOrg/neogit",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim", -- optional - Diff integration
@@ -8,5 +9,8 @@ return {
 		"nvim-telescope/telescope.nvim", -- optional
 		"ibhagwan/fzf-lua", -- optional
 	},
-	config = true,
+	config = function()
+		require("neogit").setup({})
+		vim.keymap.set("n", "<leader>ng", ":Neogit<CR>")
+	end,
 }
