@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 
 local keymap = vim.keymap
-
 -- normal mode
 keymap.set("i", "kj", "<Esc>")
 
@@ -19,7 +18,7 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "clear search highlights" })
 
 -- increment or decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "increment number" })
-keymap.set("n", "<leader>-", "<C-a>", { desc = "decrement number" })
+keymap.set("n", "<leader>-", "<C-x>", { desc = "decrement number" })
 
 -- spliting windows
 keymap.set("n", "<leader>ss", ":vsplit<CR>", { desc = "split window vertically" })
@@ -34,10 +33,17 @@ keymap.set("n", "L", "<cmd>tabn<CR>", { desc = "go to next tab" })
 keymap.set("n", "H", "<cmd>tabp<CR>", { desc = "go to prev tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "open current buffer in new tab" })
 
-keymap.set("n", "<leader>po", ":PyrightOrganizeImports<CR>", { desc = "Organize python imports" })
+-- python
+keymap.set("n", "<leader>po", ":PyrightOrganizeImports<CR>", { desc = "Python: Organize imports" })
 keymap.set(
-	"n",
-	"<leader>pp",
-	":PyrightSetPythonPath .venv/bin/python<CR>",
-	{ desc = "Set python path to workdir's .venv" }
+  "n",
+  "<leader>pp",
+  ":PyrightSetPythonPath .venv/bin/python<CR>",
+  { desc = "Python: Set python path to workdir's .venv" }
 )
+
+-- debugger
+keymap.set("n", "<leader>dt", ":lua require('dapui').toggle()<CR>", { desc = "Debug: Toggle debugging UI" })
+keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "Debug: Toggle breakpoint" })
+keymap.set("n", "<leader>dc", ":DapContinue<CR>", { desc = "Debug: Resume program" })
+keymap.set("n", "<leader>dr", ":lua require('dapui').open({ reset = true })<CR>", { desc = "Debug: Reset UI" })
