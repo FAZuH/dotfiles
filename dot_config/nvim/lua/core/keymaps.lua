@@ -66,8 +66,14 @@ keymap.set("n", "<leader>sv", "<C-w>=", { desc = "make windows equal size" })
 keymap.set("n", "<leader>sl", "<cmd>close<CR>", { desc = "close current split" })
 
 -- LSP
+keymap.set("n", "<leader>l", "", { desc = "LSP" })
+keymap.set(
+  "n",
+  "<leader>lc",
+  ":lua require('neogen').generate()<CR>",
+  { noremap = true, silent = true, desc = "Generate docstring" }
+)
 function M.lsp_attach_callback(ev)
-  keymap.set("n", "<leader>l", "", { desc = "LSP" })
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local opts = { buffer = ev.buf, silent = true }
   opts.desc = "show LSP references"
