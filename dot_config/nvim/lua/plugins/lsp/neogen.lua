@@ -1,7 +1,7 @@
 return {
   "danymat/neogen",
-  event = { "BufReadPre", "BufNewFile" },
-  config = function()
+  lazy = false,
+  init = function()
     require("neogen").setup({
       languages = {
         python = {
