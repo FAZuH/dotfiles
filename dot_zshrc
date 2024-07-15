@@ -94,20 +94,21 @@ alias t=tmux
 alias d=docker
 
 export EDITOR="nvim"
+export PATH=$PATH:/home/faz/.spicetify
 
 function cwhich() {
   cd "$(dirname $(which $1))"
 }
 
-function tmain() {
+function tma() {
   tmux attach -t main
 }
 
-function tconf() {
+function tco() {
   tmux attach -t conf
 }
 
-function tfbot() {
+function tbo() {
   tmux attach -t fazbot
 }
 
@@ -119,5 +120,10 @@ function ldu() {
   du -sh ./*
 }
 
-export PATH=$PATH:/home/faz/.spicetify
+function pyv() {
+  source .venv/bin/activate
+}
 
+function setup_molten() {
+  pip install pynvim jupyter_client cariosvg pnglatex plotly kaleido pypercilp
+}
