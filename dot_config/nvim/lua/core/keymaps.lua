@@ -5,6 +5,7 @@ vim.g.mapleader = " "
 local keys = vim.keymap
 
 -- Group naming
+keys.set("n", "<leader>c", "", { desc = "Copilot" })
 keys.set("n", "<leader>d", "", { desc = "Debugging" })
 keys.set("n", "<leader>f", "", { desc = "Find" })
 keys.set("n", "z", "", { desc = "fold" })
@@ -13,20 +14,26 @@ keys.set("n", "<leader>l", "", { desc = "LSP" })
 keys.set("n", "m", "", { desc = "Marks" })
 keys.set("n", "]", "", { desc = "Movement:Next" })
 keys.set("n", "[", "", { desc = "Movement:Previous" })
+keys.set("n", "<leader>o", "", { desc = "Others" })
 keys.set("n", "<leader>p", "", { desc = "Python" })
 keys.set("n", "<leader>m", "", { desc = "Python:Molten" })
 keys.set("n", "<leader>w", "", { desc = "Session" })
 keys.set("n", "<leader>t", "", { desc = "Tabs" })
 keys.set("n", "<leader>s", "", { desc = "Windows" })
 
+-- Copilot
+keys.set("n", "<leader>cc", ":CopilotChat<CR>", { desc = "Open copilot chat" })
+keys.set("n", "<leader>ce", ":Copilot enable<CR>", { desc = "Enable copilot completions" })
+keys.set("n", "<leader>cd", ":Copilot disable<CR>", { desc = "Disable copilot completions" })
+
 -- Debugger
 keys.set("n", "<leader>dt", ":lua require('dapui').toggle()<CR>", { desc = "Debug: Toggle debugging UI" })
-keys.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "Debug: Toggle breakpoint" })
 keys.set("n", "<leader>dr", ":lua require('dapui').open({ reset = true })<CR>", { desc = "Debug: Reset UI" })
-keys.set("n", "<leader>dc", ":DapContinue<CR>", { desc = "Debug: Resume program" })
-keys.set("n", "<leader>ds", ":DapStepOver<CR>", { desc = "Debug: Step over" })
-keys.set("n", "<leader>di", ":DapStepInto<CR>", { desc = "Debug: Step into" })
-keys.set("n", "<leader>do", ":DapStepOut<CR>", { desc = "Debug: Step out" })
+keys.set("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "Debug: Toggle breakpoint" })
+keys.set("n", "<leader>d5", ":DapContinue<CR>", { desc = "Debug: Resume program" })
+keys.set("n", "<leader>d6", ":DapStepOver<CR>", { desc = "Debug: Step over" })
+keys.set("n", "<leader>d7", ":DapStepInto<CR>", { desc = "Debug: Step into" })
+keys.set("n", "<leader>d8", ":DapStepOut<CR>", { desc = "Debug: Step out" })
 keys.set("n", "<leader>dm", ":lua require('neotest').run.run()<cr>", { desc = "Test Method" })
 keys.set("n", "<leader>dM", ":lua require('neotest').run.run({strategy = 'dap'})<cr>", { desc = "Test Method DAP" })
 keys.set("n", "<leader>df", ":lua require('neotest').run.run({vim.fn.expand('%')})<cr>", { desc = "Test Class" })
@@ -44,6 +51,11 @@ keys.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 keys.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 keys.set("n", "<C-s>", ":w<CR>", { noremap = true })
 keys.set("i", "<C-s>", "<C-o>:write<CR>a", { noremap = true })
+keys.set("n", "<leader>g", ":Neogit<CR>")
+
+-- Others
+keys.set("n", "<leader>ol", ":lua require('nabla').popup()<CR>", { desc = "Nabla: Popup" })
+keys.set("n", "<leader>om", ":MarkdownPreviewToggle<CR>", { desc = "Markdown: Preview" })
 
 -- Python
 keys.set("n", "<leader>po", ":PyrightOrganizeImports<CR>", { desc = "Python: Organize imports" })
@@ -54,14 +66,26 @@ keys.set(
   { desc = "Python: Set python path to workdir's .venv" }
 )
 -- Python:molten
-keys.set("n", "<leader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin" })
+keys.set("n", "<leader>mi", function()
+  local venv = os.getenv("VIRTUAL_ENV")
+  if venv ~= nil then
+    venv = string.match(venv, "/.+/(.+)")
+    vim.cmd(("MoltenInit %s"):format(venv))
+  else
+    vim.cmd("MoltenInit python3")
+  end
+end, { desc = "Initialize Molten for python3", silent = true })
+keys.set("n", "<leader>mD", ":MoltenDeinit<CR>", { silent = true, desc = "Molten de-initialize" })
 keys.set("n", "<leader>me", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "Run operator selection" })
-keys.set("n", "<leader>mr", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Evaluate line" })
-keys.set("n", "<leader>mR", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Re-evaluate cell" })
+keys.set("n", "<leader>ml", ":MoltenEvaluateLine<CR>", { silent = true, desc = "Evaluate line" })
+keys.set("n", "<leader>mr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "Re-evaluate cell" })
+keys.set("n", "<leader>mR", ":MoltenRestart<CR>", { silent = true, desc = "Molten restart" })
 keys.set("v", "<leader>mv", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "Evaluate visual selection" })
 keys.set("n", "<leader>md", ":MoltenDelete<CR>", { silent = true, desc = "Molten delete cell" })
-keys.set("n", "<leader>mh", ":MoltenHideOutput<CR>", { silent = true, desc = "Hide output" })
 keys.set("n", "<leader>ms", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "Show/enter output" })
+keys.set("n", "<leader>mh", ":MoltenHideOutput<CR>", { silent = true, desc = "Hide output" })
+keys.set("n", "<leader>m]", ":MoltenNext<CR>", { silent = true, desc = "Go to next cell" })
+keys.set("n", "<leader>m[", ":MoltenPrev<CR>", { silent = true, desc = "Go to pref cell" })
 
 -- Find
 keys.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
