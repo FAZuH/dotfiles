@@ -1,6 +1,10 @@
 # dotfiles
 
-Warning: Chezmoi requires a passphrase to decrypt certain files.
+Warning:
+
+- These dotfiles are not designed for public use; you may need to adjust them to suit your own device.
+- Checkout to branch `nvidia` if you're using an NVIDIA GPU. You'd also pull new git commits with --rebase, because new commits are pushed into `main` branch.
+- Chezmoi requires a passphrase to decrypt certain files.
 
 ## Installation
 
@@ -24,7 +28,7 @@ reboot
 
 ### Setup
 
-#### Install Window Manager
+#### Install Window Manager (Hyprland)
 
 ```bash
 nmcli d wifi connect SID password PASSWORD
@@ -67,7 +71,8 @@ chmod +x nvidia.sh && ./nvidia.sh
 yay -S downgrade --noconfirm && sudo downgrade hyprland && reboot
 
 # Discord
-yay -S flatpak --noconfirm && flatpak install io.github.spacingbat3.webcord
+yay -S vencord --noconfirm
+# yay -S flatpak --noconfirm && flatpak install io.github.spacingbat3.webcord
 
 # Visual Studio Code
 yay -R code && yay -S visual-studio-code-bin --noconfirm
@@ -79,7 +84,9 @@ yay -S mariadb --noconfirm && mariadb-install-db --user=mysql --basedir=/usr --d
 curl -s "https://get.sdkman.io" | bash
 
 # Tmux & Neovim
-yay -S tmux ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --noconfirm && sudo luarocks install persistence.nvim && sudo npm install -g eslint @biomejs/biome && tmux && tmux source-file ~/.tmux.conf
+yay -S tree-sitter-cli tmux imagemagick lua51 ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --noconfirm \
+    && sudo luarocks install persistence.nvim && sudo npm install -g eslint @biomejs/biome && tmux \
+    && tmux source-file ~/.tmux.conf sudo luarocks install --lua-version=5.1 install magick \
 # \<prefix>I to install plugins on tmux. source-file then.
 
 # SDDM Theme
@@ -91,8 +98,8 @@ yay -S spotify spicetify-cli --noconfirm && sudo chmod a+wr /opt/spotify && sudo
 # OCR
 yay -S python-pip && sudo rm /usr/lib/python3.12/EXTERNALLY-MANAGED && pip install pix2tex && yay -S tesseract tesseract-eng-data tesseract-data-jpn --noconfirm
 
-# Download chromium and download LINE
-yay -S chromium --noconfirm && chromium https://chromewebstore.google.com/detail/line/ophjlpahpchlmihnnnihgmmeilfjmjjc?hl=en
+# Download chrome and download LINE
+yay -S chromium google-chrome --noconfirm && chromium https://chromewebstore.google.com/detail/line/ophjlpahpchlmihnnnihgmmeilfjmjjc?hl=en
 
 # Apps
 yay -S hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget chromium \
