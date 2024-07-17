@@ -95,35 +95,64 @@ alias d=docker
 
 export EDITOR="nvim"
 export PATH=$PATH:/home/faz/.spicetify
+export VENV_HOME="$HOME/.virtualenvs"
+[[ -d $VENV_HOME ]] || mkdir $VENV_HOME
 
-function cwhich() {
+cwhich() {
   cd "$(dirname $(which $1))"
 }
 
-function tma() {
+tma() {
   tmux attach -t main
 }
 
-function tco() {
+tco() {
   tmux attach -t conf
 }
 
-function tbo() {
+tbo() {
   tmux attach -t fazbot
 }
 
-function loadcreds() {
+loadcreds() {
   mkdir -p ~/mount/credentials && rclone mount gdrive:credentials ~/mount/credentials --allow-non-empty
 }
 
-function ldu() {
+ldu() {
   du -sh ./*
 }
 
-function pyv() {
-  source .venv/bin/activate
+lsvenv() {
+  ls -1 $VENV_HOME
 }
 
-function setup_molten() {
-  pip install pynvim jupyter_client cariosvg pnglatex plotly kaleido pypercilp
+venv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      source "$VENV_HOME/$1/bin/activate"
+  fi
+}
+
+mkvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      python3 -m venv $VENV_HOME/$1
+  fi
+}
+
+rmvenv() {
+  if [ $# -eq 0 ]
+    then
+      echo "Please provide venv name"
+    else
+      rm -r $VENV_HOME/$1
+  fi
+}
+
+setup_molten() {
+  pip install pynvim jupyter_client cairosvg pnglatex plotly kaleido pyperclip
 }
