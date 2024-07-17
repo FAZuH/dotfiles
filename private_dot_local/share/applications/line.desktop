@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=LINE
+Comment=Line Messanger application
+Exec=chromium --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html
+Icon=/home/faz/.config/chromium/Default/Extensions/ophjlpahpchlmihnnnihgmmeilfjmjjc/3.4.0_0/line_logo_128x128_on.png
+Terminal=false
+Type=Application
