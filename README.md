@@ -85,7 +85,7 @@ curl -s "https://get.sdkman.io" | bash
 # Tmux & Neovim
 yay -S tree-sitter-cli tmux imagemagick lua51 ripgrep ttf-fira-code ttf-firacode-nerd luarocks nodejs npm pnpm --noconfirm \
     && sudo luarocks install persistence.nvim && sudo npm install -g eslint @biomejs/biome && tmux \
-    && tmux source-file ~/.tmux.conf sudo luarocks install --lua-version=5.1 install magick \
+    && tmux source-file ~/.tmux.conf && sudo luarocks install --lua-version=5.1 magick
 # \<prefix>I to install plugins on tmux. source-file then.
 
 # SDDM Theme
