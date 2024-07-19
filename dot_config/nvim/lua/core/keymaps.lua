@@ -4,22 +4,22 @@ vim.g.mapleader = " "
 
 local keys = vim.keymap
 
--- Group naming
-keys.set("n", "<leader>c", "", { desc = "Copilot" })
-keys.set("n", "<leader>d", "", { desc = "Debugging" })
-keys.set("n", "<leader>f", "", { desc = "Find" })
-keys.set("n", "z", "", { desc = "fold" })
-keys.set("n", "<leader>l", "", { desc = "LSP" })
--- keys.set("n", "g", "", { desc = "Movement:Go" })
-keys.set("n", "m", "", { desc = "Marks" })
-keys.set("n", "]", "", { desc = "Movement:Next" })
-keys.set("n", "[", "", { desc = "Movement:Previous" })
-keys.set("n", "<leader>o", "", { desc = "Others" })
-keys.set("n", "<leader>p", "", { desc = "Python" })
-keys.set("n", "<leader>m", "", { desc = "Python:Molten" })
-keys.set("n", "<leader>w", "", { desc = "Session" })
-keys.set("n", "<leader>t", "", { desc = "Tabs" })
-keys.set("n", "<leader>s", "", { desc = "Windows" })
+-- -- Group naming
+-- keys.set("n", "<leader>c", "", { desc = "Copilot" })
+-- keys.set("n", "<leader>d", "", { desc = "Debugging" })
+-- keys.set("n", "<leader>f", "", { desc = "Find" })
+-- keys.set("n", "z", "", { desc = "fold" })
+-- keys.set("n", "<leader>l", "", { desc = "LSP" })
+-- -- keys.set("n", "g", "", { desc = "Movement:Go" })
+-- keys.set("n", "m", "", { desc = "Marks" })
+-- keys.set("n", "]", "", { desc = "Movement:Next" })
+-- keys.set("n", "[", "", { desc = "Movement:Previous" })
+-- keys.set("n", "<leader>o", "", { desc = "Obsidian" })
+-- keys.set("n", "<leader>p", "", { desc = "Python" })
+-- keys.set("n", "<leader>m", "", { desc = "Python:Molten" })
+-- keys.set("n", "<leader>w", "", { desc = "Session" })
+-- keys.set("n", "<leader>t", "", { desc = "Tabs" })
+-- keys.set("n", "<leader>s", "", { desc = "Windows" })
 
 -- Copilot
 keys.set("n", "<leader>cc", ":CopilotChat<CR>", { desc = "Open copilot chat" })
@@ -53,9 +53,20 @@ keys.set("n", "<C-s>", ":w<CR>", { noremap = true })
 keys.set("i", "<C-s>", "<C-o>:write<CR>a", { noremap = true })
 keys.set("n", "<leader>g", ":Neogit<CR>")
 
--- Others
-keys.set("n", "<leader>ol", ":lua require('nabla').popup()<CR>", { desc = "Nabla: Popup" })
+-- Obsidian
+keys.set("n", "<leader>oL", ":lua require('nabla').popup()<CR>", { desc = "Nabla: Popup" })
 keys.set("n", "<leader>om", ":MarkdownPreviewToggle<CR>", { desc = "Markdown: Preview" })
+keys.set("n", "<leader>o<leader>", ":ObsidianQuickSwitch<CR>", { desc = "Obsidian: Quick switch" })
+keys.set("n", "<leader>od", ":ObsidianDailies -2 2<CR>", { desc = "Obsidian: Daily notes" })
+keys.set("n", "<leader>oD", ":ObsidianToday<CR>", { desc = "Obsidian: Daily notes" })
+keys.set("n", "<leader>os", ":ObsidianSearch<CR>", { desc = "Obsidian: Search" })
+keys.set("n", "<leader>ot", ":ObsidianTOC<CR>", { desc = "Obsidian: Table of contents" })
+keys.set("n", "<leader>oT", ":ObsidianTags<CR>", { desc = "Obsidian: Tags" })
+keys.set("n", "<leader>ol", ":ObsidianLinks<CR>", { desc = "Obsidian: Links" })
+keys.set("n", "<leader>oc", ":ObsidianToggleCheckbox<CR>", { desc = "Obsidian: Toggle checkbox" })
+keys.set("n", "<leader>or", ":ObsidianRename<CR>", { desc = "Obsidian: Rename note" })
+keys.set("n", "<leader>on", ":ObsidianNew<CR>", { desc = "Obsidian: New note" })
+keys.set("n", "<leader>oo", ":ObsidianOpen<CR>", { desc = "Obsidian: Open in application" })
 
 -- Python
 keys.set("n", "<leader>po", ":PyrightOrganizeImports<CR>", { desc = "Python: Organize imports" })
