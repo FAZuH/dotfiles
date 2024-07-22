@@ -9,3 +9,5 @@ echo -e "[Theme]\nCurrent=sddm-astronaut-theme" | sudo tee /etc/sddm.conf
 sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT=""/' /etc/default/grub
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+rm ~/.local/share/bin/wallbashdiscord.sh

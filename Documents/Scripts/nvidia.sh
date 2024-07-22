@@ -11,3 +11,5 @@ sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="nvidia
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 echo 'source = ~/.config/hypr/nvidia.conf' >> ~/.config/hypr/hyprland.conf
+
+rm ~/.local/share/bin/wallbashdiscord.sh
