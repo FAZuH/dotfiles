@@ -1,11 +1,11 @@
 # dotfiles
 
-Warning:
-
 > [!WARNING]
 > 
 > These dotfiles are not designed for public use; you may need to adjust them to suit your own device.
+>
 > Checkout to branch `nvidia` if you're using an NVIDIA GPU. You'd also pull new git commits with --rebase, because new commits are pushed into `main` branch.
+>
 > Chezmoi requires a passphrase to decrypt certain files.
 >
 
