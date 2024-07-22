@@ -2,9 +2,12 @@
 
 Warning:
 
-- These dotfiles are not designed for public use; you may need to adjust them to suit your own device.
-- Checkout to branch `nvidia` if you're using an NVIDIA GPU. You'd also pull new git commits with --rebase, because new commits are pushed into `main` branch.
-- Chezmoi requires a passphrase to decrypt certain files.
+> [!WARNING]
+> 
+> These dotfiles are not designed for public use; you may need to adjust them to suit your own device.
+> Checkout to branch `nvidia` if you're using an NVIDIA GPU. You'd also pull new git commits with --rebase, because new commits are pushed into `main` branch.
+> Chezmoi requires a passphrase to decrypt certain files.
+>
 
 ## Installation
 
@@ -50,15 +53,13 @@ git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE && cd ~/Hy
 ```bash
 cd ~ && yay -S chezmoi age
 
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init FAZuH
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FAZuH
 
 eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519 && chezmoi cd
 
-git remote set-url origin git@github.com:FAZuH/dotfiles.git && chezmoi apply
+git remote set-url origin git@github.com:FAZuH/dotfiles.git
 
-exit
-
-cd ~/.local/share/chezmoi/Scripts
+cd Documents/Scripts
 # non NVIDIA GPU
 chmod +x nonnvidia.sh && ./nonnvidia.sh
 # NVIDIA GPU below
@@ -68,8 +69,6 @@ chmod +x nvidia.sh && ./nvidia.sh
 #### Download & Install Applications
 
 ```bash
-yay -S downgrade --noconfirm && sudo downgrade hyprland && reboot
-
 # Discord
 yay -S vencord --noconfirm
 
@@ -77,7 +76,8 @@ yay -S vencord --noconfirm
 yay -R code && yay -S visual-studio-code-bin --noconfirm
 
 # Mariadb
-yay -S mariadb --noconfirm && mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql && echo "auto-rehash" | sudo tee -a /etc/my.cnf.d/client.cnf && sudo systemctl restart mariadb
+yay -S mariadb --noconfirm && sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql \
+    && echo "auto-rehash" | sudo tee -a /etc/my.cnf.d/client.cnf && sudo systemctl restart mariadb
 
 # SDKman
 curl -s "https://get.sdkman.io" | bash
@@ -89,7 +89,8 @@ yay -S tree-sitter-cli tmux imagemagick lua51 ripgrep ttf-fira-code ttf-firacode
 # \<prefix>I to install plugins on tmux. source-file then.
 
 # SDDM Theme
-sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme && sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
+sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme \
+    && sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
 
 # Spotify
 yay -S spotify spicetify-cli --noconfirm && sudo chmod a+wr /opt/spotify && sudo chmod a+wr /opt/spotify/Apps -R
@@ -97,18 +98,19 @@ yay -S spotify spicetify-cli --noconfirm && sudo chmod a+wr /opt/spotify && sudo
 # OCR
 yay -S python-pip && sudo rm /usr/lib/python3.12/EXTERNALLY-MANAGED && pip install pix2tex && yay -S tesseract tesseract-eng-data tesseract-data-jpn --noconfirm
 
-# Download chrome and download LINE
-yay -S chromium google-chrome --noconfirm && chromium https://chromewebstore.google.com/detail/line/ophjlpahpchlmihnnnihgmmeilfjmjjc?hl=en
+# Install brave and add LINE extension
+yay -S brave --noconfirm && brave https://chromewebstore.google.com/detail/line/ophjlpahpchlmihnnnihgmmeilfjmjjc?hl=en
 
 # Apps
-yay -S hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget chromium \
+yay -S --noconfirm hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget chromium \
     cava btop neofetch ani-cli mov-cli neovim kitty ranger encryptpad rclone \
     rclone-browser pavucontrol zathura zathura-pdf-mupdf ranger nautilus nchat \
-    multimc-bin whatsie obsidian obs-studio noise-suppression-for-voice net-tools \
-    --noconfirm
+    multimc-bin whatsie obsidian obs-studio downgrade net-tools
 
 # Heavy Apps
-yay -S jdk21-openjdk intellij-idea-community-edition intellij-idea-ultimate-edition pycharm-community-edition pycharm-professional android-studio virtualbox virtualbox-host-modules-arch qbittorrent-git ventoy-bin --noconfirm && sudo /sbin/vboxreload
+yay -S jdk21-openjdk intellij-idea-community-edition intellij-idea-ultimate-edition \
+    pycharm-community-edition pycharm-professional android-studio virtualbox virtualbox-host-modules-arch \
+    qbittorrent-git ventoy-bin --noconfirm && sudo /sbin/vboxreload
 ```
 
 #### Setup SSH
