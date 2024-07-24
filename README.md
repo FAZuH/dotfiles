@@ -36,10 +36,10 @@ git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE && cd ~/Hy
 # AUR helper    : yay
 # Shell         : zsh
 # Font          : notos
-# Flatpaks      : Don't install
-# SDDM          : Corners
+# SDDM          : corners
 # Theme         : tokyonight
-# Wallpaper     : lowpoly_street.png/street.gif
+# Wallpaper     : lowpoly_street / street / cat_lofi_cafe
+# Flatpaks      : Don't install
 # App chooser   : Style 2
 ```
 
@@ -63,12 +63,16 @@ chezmoi cd && git remote set-url origin git@github.com:FAZuH/dotfiles.git
 
 #### Install Applications
 
-```bash
-./Scripts/install.sh
+- Install applications with install script on `Scripts/install.sh`
 
-# Install heavy apps. WARNING! Takes a long time
-./Scripts/install.sh --heavy
-```
+- Options:
+    - None : Full personalized dotfiles setup, excluding heavy apps.
+    - `--install` : Install apps listed on list_apps only.
+    - `--heavy` : Install apps listed on list_apps_heavy only.
+
+> [!WARNING]
+> 
+> Installing apps with `--heavy` may take a long time.
 
 #### Setup SSH
 
