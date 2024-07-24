@@ -45,6 +45,8 @@ git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE && cd ~/Hy
 
 ### Install Personalized Dotfiles
 
+#### Download and Apply Dotfiles
+
 ```bash
 # Install dotfiles manager (chezmoi) and encyption tool (age)
 cd ~ && yay -S chezmoi age
@@ -62,57 +64,10 @@ chezmoi cd && git remote set-url origin git@github.com:FAZuH/dotfiles.git
 #### Install Applications
 
 ```bash
-# Apps
-yay -S --noconfirm \
-    hyde-cli-git qrencode gnome-clocks tree noto-fonts-emoji wget brave cava btop neofetch \
-    ani-cli neovim kitty encryptpad rclone pavucontrol zathura zathura-pdf-mupdf ranger nautilus \
-    multimc-bin whatsie obsidian obs-studio downgrade net-tools vencord mariadb spotify \
-    spicetify-cli tree-sitter-cli tmux imagemagick lua51 ripgrep ttf-fira-code ttf-firacode-nerd \
-    luarocks nodejs npm pnpm 
+./Scripts/install.sh
 
-# Heavy Apps
-yay -S --noconfirm jdk21-openjdk intellij-idea-community-edition intellij-idea-ultimate-edition \
-    pycharm-community-edition pycharm-professional android-studio virtualbox \
-    virtualbox-host-modules-arch qbittorrent-git ventoy-bin python-pix2tex tesseract tesseract-eng-data tesseract-data-jpn
-
-
-# Post
-yay -R code && yay -S visual-studio-code-bin --noconfirm
-
-# MariaDb
-sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql \
-    && echo "auto-rehash" | sudo tee -a /etc/my.cnf.d/client.cnf && sudo systemctl restart mariadb
-
-# SDKman
-curl -s "https://get.sdkman.io" | bash
-
-# SDDM Theme
-sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme \
-    && sudo cp /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
-
-# Spotify
-sudo chmod a+wr /opt/spotify && sudo chmod a+wr /opt/spotify/Apps -R
-```
-
-#### Post Installation
-
-```bash
-# Tmux & Neovim
-sudo luarocks install persistence.nvim && sudo npm install -g eslint @biomejs/biome && tmux \
-    && tmux source-file ~/.tmux.conf && sudo luarocks install --lua-version=5.1 magick
-# \<prefix>I to install plugins on tmux. source-file then.
-
-# Remove wallbashdiscord
-rm ~/.local/share/bin/wallbashdiscord.sh
-
-# Disable poweroff button
-sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-
-# Change SDDM theme
-echo -e "[Theme]\nCurrent=sddm-astronaut-theme" | sudo tee /etc/sddm.conf
-
-# VBox
-sudo /sbin/vboxreload
+# Install heavy apps. WARNING! Takes a long time
+./Scripts/install.sh --heavy
 ```
 
 #### Setup SSH
