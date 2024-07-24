@@ -156,3 +156,7 @@ rmvenv() {
 setup_molten() {
   pip install pynvim jupyter_client cairosvg pnglatex plotly kaleido pyperclip
 }
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
