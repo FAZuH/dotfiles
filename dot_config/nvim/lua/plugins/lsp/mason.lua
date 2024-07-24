@@ -24,6 +24,7 @@ return {
         "prismals",
         "pyright",
         "clangd",
+        "bashls",
       },
     })
 
@@ -36,6 +37,7 @@ return {
         "clang-format", -- c formatter
         "pylint",
         "eslint_d",
+        -- "shellcheck", -- sh linter
       },
     })
   end,
