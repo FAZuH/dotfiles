@@ -76,14 +76,10 @@ else
 fi
 
 # 8. Replace code with visual-studio-code-bin
-if pacman -Qi code 2>/dev/null | grep -q "^Name\s*:\s*code$"; then
-    echoinf "Removing code ..."
-    yay -R --noconfirm code;
-    echoscs "Removed code ..."
-else echoskp "code is already removed"; fi
 if ! pkg_installed "visual-studio-code-bin"; then
     echoinf "Installing visual-studio-code-bin ..."
-    yay -S visual-studio-code-bin --noconfirm code;
+    yay -R --noconfirm code
+    yay -S --noconfirm visual-studio-code-bin
     echoscs "Installed visual-studio-code-bin"
 else echoskp "visual-studio-code-bin is already Installed"; fi
 
