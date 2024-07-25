@@ -49,7 +49,7 @@ if [ -f "/etc/systemd/logind.conf" ]; then
 fi
 
 # 6. Change SDDM theme
-if pkg_installed sddm && [ -f "/etc/sddm.conf" ]; then
+if pkg_installed sddm && [ -d "/etc/sddm.conf.d" ]; then
     if [ ! -d "/usr/share/sddm/themes/sddm-astronaut-theme" ]; then
         echoinf "Installing SDDM theme ..."
         sudo git clone https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme
