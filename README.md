@@ -32,7 +32,6 @@ reboot
 nmcli d wifi connect SID password PASSWORD
 
 git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE && cd ~/HyDE/Scripts && ./install.sh -drs
-
 # AUR helper    : yay
 # Shell         : zsh
 # Font          : notos
@@ -49,7 +48,7 @@ git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE && cd ~/Hy
 
 ```bash
 # Install dotfiles manager (chezmoi) and encyption tool (age)
-cd ~ && yay -S chezmoi age
+cd ~ && yay -S --noconfirm chezmoi age openssh
 
 # Download and apply personalized dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply FAZuH
@@ -72,7 +71,7 @@ chezmoi cd && git remote set-url origin git@github.com:FAZuH/dotfiles.git
 
 > [!WARNING]
 > 
-> Installing apps with `--heavy` may take a long time.
+> Running `install.sh` with `--heavy` may take a long time due to the download and compilation size.
 
 #### Setup SSH
 
