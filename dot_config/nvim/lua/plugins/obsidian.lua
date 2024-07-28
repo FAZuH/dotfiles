@@ -15,12 +15,12 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/Documents/Obsidian/FAZuH",
+          path = "~/Documents/FAZuH",
         },
       },
 
       templates = {
-        folder = "99 Templates",
+        folder = "9 Templates",
       },
       daily_notes = {
         folder = "2 Areas/Daily Note",
