@@ -127,30 +127,27 @@ lsvenv() {
 }
 
 venv() {
-  if [ $# -eq 0 ]
-    then
-      echo "Please provide venv name"
-    else
-      source "$VENV_HOME/$1/bin/activate"
+  if [ $# -eq 0 ]; then
+    echo "Please provide venv name"
+    exit 1
   fi
+  source "$VENV_HOME/$1/bin/activate"
 }
 
 mkvenv() {
-  if [ $# -eq 0 ]
-    then
-      echo "Please provide venv name"
-    else
-      python3 -m venv $VENV_HOME/$1
+  if [ $# -eq 0 ]; then
+    echo "Please provide venv name"
+    exit 1
   fi
+  python3 -m venv $VENV_HOME/$1
 }
 
 rmvenv() {
-  if [ $# -eq 0 ]
-    then
-      echo "Please provide venv name"
-    else
-      rm -r $VENV_HOME/$1
+  if [ $# -eq 0 ]; then
+    echo "Please provide venv name"
+    exit 1
   fi
+  rm -r $VENV_HOME/$1
 }
 
 setup_molten() {
