@@ -59,9 +59,9 @@ done < <(cut -d '#' -f 1 "${listPkg}")
 IFS=${ofs}
 
 if [[ ${#archPkg[@]} -gt 0 ]]; then
-    sudo pacman ${use_default} -S "${archPkg[@]}"
+    sudo pacman ${use_default} -S --noconfirm "${archPkg[@]}"
 fi
 
 if [[ ${#aurhPkg[@]} -gt 0 ]]; then
-    "${aurhlpr}" ${use_default} -S "${aurhPkg[@]}"
+    "${aurhlpr}" ${use_default} -S --noconfirm "${aurhPkg[@]}"
 fi
