@@ -8,7 +8,9 @@ return {
   },
   config = function()
     -- import lspconfig plugin
+    require("java").setup()
     local lspconfig = require("lspconfig")
+    lspconfig.jdlts.setup({})
 
     -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
