@@ -17,12 +17,15 @@ neofetch
 neovim
 net-tools
 nodejs
+notion-calendar
+notion-app-electron
 noto-fonts-emoji
 npm
 obsidian
 obs-studio
 pavucontrol
 pnpm
+proton-pass
 qrencode
 ranger
 rclone
@@ -39,3 +42,4 @@ wget
 whatsie
 zathura
 zathura-pdf-mupdf
+zed-git
