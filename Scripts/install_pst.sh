@@ -19,12 +19,8 @@ if [ -d "/opt/spotify/" ] && [ -d "/opt/spotify/Apps/" ]; then sudo chmod a+wr /
 # 3. Tmux & Neovim
 if pkg_installed "luarocks" && pkg_installed "npm" && pkg_installed "tmux" && pkg_installed "lua51" && [ -f "$HOME/.tmux.conf" ]; then
     echoinf "Installing tmux and nvim config dependencies ..."
-    # sudo luarocks install persistence.nvim 
-    # sudo npm install -g eslint @biomejs/biomejs
-    # # TODO: Test if installing locally works
+    sudo npm install -g eslint @biomejs/biome
     luarocks --local install persistence.nvim
-    # TODO: Can't npm install for some reason
-    # npm install --local -g eslint @biomejs/biomejs
     tmux new -s tmp -d
     tmux source-file ~/.tmux.conf
     sudo luarocks install --lua-version=5.1 magick
