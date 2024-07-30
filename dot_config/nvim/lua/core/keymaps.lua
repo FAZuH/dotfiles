@@ -53,6 +53,12 @@ keys.set("n", "<C-s>", ":w<CR>", { noremap = true })
 keys.set("i", "<C-s>", "<C-o>:write<CR>a", { noremap = true })
 keys.set("n", "<leader>g", ":Neogit<CR>")
 
+-- Noice
+keys.set("n", "<leader>nd", ":NoiceDismiss", { desc = "Dismiss noice notification" })
+keys.set("n", "<leader>nt", ":NoiceTelescope", { desc = "Open noice notifications using telescope" })
+keys.set("n", "<leader>nD", ":NoiceDisable", { desc = "Disable noice notifications" })
+keys.set("n", "<leader>ne", ":NoiceEnable", { desc = "Enable noice notifications" })
+
 -- Obsidian
 keys.set("n", "<leader>oL", ":lua require('nabla').popup()<CR>", { desc = "Nabla: Popup" })
 keys.set("n", "<leader>om", ":MarkdownPreviewToggle<CR>", { desc = "Markdown: Preview" })
