@@ -21,9 +21,10 @@ if pkg_installed "luarocks" && pkg_installed "npm" && pkg_installed "tmux" && pk
     echoinf "Installing tmux and nvim config dependencies ..."
     sudo npm install -g eslint @biomejs/biome
     luarocks --local install persistence.nvim
+    sudo luarocks install --lua-version=5.1 magick
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     tmux new -s tmp -d
     tmux source-file ~/.tmux.conf
-    sudo luarocks install --lua-version=5.1 magick
     tmux kill-ses -t tmp
     echoscs "Installed tmux and nvim config dependencies"
 else
