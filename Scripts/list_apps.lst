@@ -8,6 +8,7 @@ gnome-clocks
 hyprlock
 imagemagick
 kitty
+kmonad-bin
 lua51
 luarocks
 mariadb
@@ -17,12 +18,13 @@ neofetch
 neovim
 net-tools
 nodejs
-notion-calendar
 notion-app-electron
+notion-calendar-electron
 noto-fonts-emoji
 npm
 obsidian
 obs-studio
+pandoc
 pavucontrol
 pnpm
 proton-pass
@@ -32,6 +34,8 @@ rclone
 ripgrep
 spicetify-cli
 spotify
+texlive
+texlive-core
 tmux
 tree
 tree-sitter-cli
@@ -40,6 +44,7 @@ ttf-fira-code
 vencord
 wget
 whatsie
+wps-office
 zathura
 zathura-pdf-mupdf
 zed-git
