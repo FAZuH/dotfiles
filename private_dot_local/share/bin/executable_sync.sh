@@ -1,7 +1,7 @@
 #!/bin/bash
 
 scrDir=$(dirname "$(realpath "$0")")
-confPath="$scrDir/sync.conf"
+confPath="${scrDir}/sync.conf"
 
 
 _checkHealth() {
@@ -21,17 +21,6 @@ _rsync() {
     local="$1"
     remote="$2"
     method="$3"
-    isDry="$4"
-    # method arg validation
-    if [[ "$method" != "down" ]] && [[ "$method" != "up" ]]; then
-        echoerr "Invalid method $method. Use 'down' or 'up'"
-        exit 1 
-    fi
-    # isDry arg validation
-    if [[ "$isDry" -ne 0 ]] && [[ "$isDry" -ne 1 ]]; then
-        echoerr "Invalid isDry '$isDry'. Use 'down' or 'up'"
-        exit 1 
-    fi
     # determine sync source & destination
     if [[ "$method" == "down" ]]; then
         source="$remote"
@@ -39,12 +28,16 @@ _rsync() {
     elif [[ "$method" == "up" ]]; then
         source="$local"
         destination="$remote"
+    else
+        echoerr "Invalid method $method. Use 'down' or 'up'"
+        exit 1 
     fi
     # determine options
-    if [ "$isDry" -eq 0 ]; then
-        extraOptions=""
-    elif [ "$isDry" -eq 1 ]; then
-        extraOptions="--dry-run"
+    extraOptions=""
+    isDry="False"
+    if [[ "$*" == *--dry* ]]; then
+        extraOptions+="--dry-run"
+        isDry="True"
     fi
     # execute command
     echo ""
@@ -64,24 +57,53 @@ _rsync() {
 
 _run_rsync() {
     method="$1"
-    isDry="$2"
     syncCount=0
-    while IFS= read -r line; do
+    exec 3< "$confPath"
+    while IFS= read -r line <&3; do
         if [[ -z "$line" || "$line" =~ ^# ]]; then
             continue
         fi
         key=$(echo "$line" | cut -d'=' -f1 | tr -d '[:space:]')
         value=$(echo "$line" | cut -d'=' -f2- | sed 's/^"//;s/"$//')
-        if [ "$key" = "remote" ]; then
-            remote="$value"
-        elif [ "$key" = "local" ]; then
-            local=$(eval echo "$value")
-            mkdir -p "$local"
-        elif [ "$key" = "method" ] && [ "$value" = "$method" ]; then
-            _rsync "$local" "$remote" "$method" "$isDry"
-            syncCount="$((syncCount+1))"
-        fi
-    done < "$confPath"
+        case "$key" in
+            "remote")
+                remote="$value"
+                ;;
+            "local")
+                local=$(eval echo "$value")
+                mkdir -p "$local"
+                ;;
+            "method")
+                if [[ "$value" != *"$method" ]]; then
+                    continue
+                fi
+                if [[ "$value" == interactive* ]]; then
+                    if [[ "$*" != *--interactive* ]]; then
+                        continue
+                    fi
+                    read -rp "Synchronize $method for $local and $remote? [y/n]: " isContinue
+                    if [[ "$isContinue" != "y" ]]; then
+                        echoskp "Skipped synchonizing $method for $local and $remote"
+                        continue
+                    fi
+                fi
+                if [[ -z "$local" ]]; then
+                    echoerr "Error: Value with key 'local' is an empty string"
+                    exit 1
+                fi
+                if [[ -z "$remote" ]]; then
+                    echoerr "Error: Value with key 'remote' is an empty string"
+                    exit 1
+                fi
+                _rsync "$local" "$remote" "$method" "${@:2}"
+                syncCount="$((syncCount+1))"
+                ;;
+            *)
+                echoerr "Invalid key on $confPath: $key"
+                ;;
+        esac
+    done
+    exec 3<&-
     echo ""
     echoscs "-------------------------------------------------"
     echoscs ""
@@ -94,24 +116,30 @@ _run_rsync() {
     clear
 }
 
-
 main() {
     _checkHealth
     options=(
         "download"
         "upload"
         "download (dry)"
+        "download (interactive)"
+        "download (dry, interactive)"
         "upload (dry)"
+        "upload (interactive)"
+        "upload (dry, interactive)"
         "quit"
     )
-
     while true; do
         selected_option=$(printf "%s\n" "${options[@]}" | fzf --reverse --prompt "Select an option: ")
         case "$selected_option" in
-            "download") _run_rsync "down" 0 ;;
-            "download (dry)") _run_rsync "down" 1 ;;
-            "upload") _run_rsync "up" 0 ;;
-            "upload (dry)") _run_rsync "up" 1 ;;
+            "download")                     _run_rsync "down" ;;
+            "download (dry)")               _run_rsync "down" --dry ;;
+            "download (interactive)")       _run_rsync "down" --interactive ;;
+            "download (dry, interactive)")  _run_rsync "down" --dry --interactive ;;
+            "upload")                       _run_rsync "up" ;;
+            "upload (dry)")                 _run_rsync "up" --dry ;;
+            "upload (interactive)")         _run_rsync "up" --interactive ;;
+            "upload (dry, interactive)")    _run_rsync "up" --dry --interactive ;;
             "quit") break ;;
             *) echoerr "Invalid option. Please try again." ;;
         esac
