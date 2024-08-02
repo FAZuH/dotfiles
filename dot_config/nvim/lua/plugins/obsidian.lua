@@ -4,8 +4,8 @@ return {
   lazy = true,
   ft = "markdown",
   event = {
-    "BufReadPre home/faz/Documents/FAZuH/**.md",
-    "BufNewFile home/faz/Documents/FAZuH/**.md",
+    "BufReadPre home/Obsidian/**.md",
+    "BufNewFile home/Obsidian/**.md",
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -14,23 +14,32 @@ return {
     require("obsidian").setup({
       workspaces = {
         {
-          name = "personal",
-          path = "~/Documents/FAZuH",
+          name = "Main",
+          path = "~/Workspace/Notes",
         },
       },
 
       templates = {
         folder = "9 Templates",
       },
+
       daily_notes = {
         folder = "2 Areas/Daily Note",
         date_format = "%Y-%m-%d",
-        -- Optional, if you want to change the date format of the default alias of daily notes.
         alias_format = "%B %-d, %Y",
-        -- Optional, default tags to add to each new daily note created.
         default_tags = { "daily-notes" },
-        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
         template = "daily-note.md",
+      },
+
+      -- ui = { enable = false },
+
+      attachments = {
+        img_folder = "9 Assets",
+        img_text_func = function(client, path)
+          path = client:vault_relative_path(path) or path
+          return string.format("![%s](%s)", path.name, path)
+        end,
+        confirm_img_paste = true,
       },
     })
   end,
