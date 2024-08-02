@@ -1,4 +1,0 @@
-["code"]
-  type = "git-repo"
-  url = "git@github.com:FAZuH/code.git"
-  refreshPeriod = "24h"
