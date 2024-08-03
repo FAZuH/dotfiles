@@ -9,7 +9,6 @@ gromit-mpx
 hyprlock
 imagemagick
 kitty
-kmonad-bin
 lua51
 luarocks
 mariadb
@@ -46,6 +45,7 @@ vencord
 wget
 whatsie
 wps-office
+xremap
 zathura
 zathura-pdf-mupdf
 zed-git

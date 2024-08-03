@@ -22,7 +22,9 @@ if pkg_installed "luarocks" && pkg_installed "npm" && pkg_installed "tmux" && pk
     sudo npm install -g eslint @biomejs/biome
     luarocks --local install persistence.nvim
     sudo luarocks install --lua-version=5.1 magick
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    if [ ! -d "$HOME/.tmux" ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
     tmux new -s tmp -d
     tmux source-file ~/.tmux.conf
     tmux kill-ses -t tmp
@@ -93,3 +95,26 @@ if pkg_installed "mariadb"; then
     sudo systemctl restart mariadb
     echoscs "Successfully set up mariadb"
 fi
+
+# 10. Keyd
+echoinf "Setting up keyd"
+sudo systemctl enable keyd && sudo systemctl start keyd
+sudo sh -c 'cat <<EOF > /etc/keyd/default.conf
+[ids]
+
+*
+
+[main]
+
+shift = oneshot(shift)
+meta = oneshot(meta)
+control = oneshot(control)
+
+leftalt = oneshot(alt)
+rightalt = oneshot(altgr)
+
+capslock = overload(control, esc)
+insert = S-insert
+EOF'
+sudo keyd reload
+echoscs "Successfully set up keyd"
