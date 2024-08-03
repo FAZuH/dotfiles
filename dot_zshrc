@@ -151,7 +151,17 @@ rmvenv() {
 }
 
 setup_molten() {
-  pip install pynvim jupyter_client cairosvg pnglatex plotly kaleido pyperclip
+  if [ -z "$1" ]; then
+    echo "Missing venv name"
+    exit 1
+  fi
+  if [ ! -d "$VENV_HOME/$1" ]; then
+    mkvenv "$1"
+  fi
+  venv "$1"
+  pip install pynvim jupyter_client cairosvg pnglatex plotly kaleido pyperclip ipykernel
+  python -m ipykernel install --user --name "$1"
+  mkdir -p "$HOME/.local/share/jupyter/runtime"
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
