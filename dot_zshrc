@@ -70,7 +70,6 @@ alias pl='$aurhelper -Qs' # list installed package
 alias pa='$aurhelper -Ss' # list availabe package
 alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
-alias vc='code' # gui code editor
 
 # Handy change dir shortcuts
 alias ..='cd ..'
@@ -86,7 +85,10 @@ alias mkdir='mkdir -p'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-# FAZuH
+#-------#
+# FAZuH #
+#-------#
+#
 alias v=nvim
 alias vi=nvim
 alias vim=nvim
@@ -98,30 +100,39 @@ export PATH=$PATH:/home/faz/.spicetify
 export VENV_HOME="$HOME/.virtualenvs"
 [[ -d $VENV_HOME ]] || mkdir $VENV_HOME
 
+#-------------------#
+# Utility Functions #
+#-------------------#
+#
 cwhich() {
   cd "$(dirname $(which $1))"
-}
-
-tma() {
-  tmux attach -t main
-}
-
-tco() {
-  tmux attach -t conf
-}
-
-tbo() {
-  tmux attach -t fazbot
-}
-
-loadcreds() {
-  mkdir -p ~/mount/credentials && rclone mount gdrive:credentials ~/mount/credentials --allow-non-empty
 }
 
 ldu() {
   du -sh ./*
 }
 
+p() {
+  if [[ -z "$1" ]]; then
+    echo "Invalid option. Choose:"
+    echo "c: .config"
+    echo "d: Drive"
+    echo "o: Obsidian"
+    return 1
+  fi
+  case "$1" in
+    "c") cd "$HOME/.config/" ;;
+    "d") cd "$HOME/Drive/" ;;
+    "o") cd "$HOME/Workspace/Notes/" ;;
+    *) p ;;
+  esac
+}
+
+
+#------------#
+# Venv Utils #
+#------------#
+#
 lsvenv() {
   ls -1 $VENV_HOME
 }
@@ -155,14 +166,13 @@ setup_molten() {
     echo "Missing venv name"
     exit 1
   fi
-  if [ ! -d "$VENV_HOME/$1" ]; then
-    mkvenv "$1"
-  fi
+  [[ -d "$VENV_HOME/$1" ]] || mkvenv $1
   venv "$1"
   pip install pynvim jupyter_client cairosvg pnglatex plotly kaleido pyperclip ipykernel
   python -m ipykernel install --user --name "$1"
   mkdir -p "$HOME/.local/share/jupyter/runtime"
 }
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
