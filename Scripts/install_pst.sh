@@ -4,13 +4,11 @@
 #|-/ /--| Prasanth Rangan                      |-/ /--|#
 #|/ /---+--------------------------------------+/ /---|#
 
-init() {
-    if ! source "global_fn.sh"; then
-        echo -e "\033[0;31m[ERROR]\033[0m unable to source global_fn.sh..."
-        exit 1
-    fi
-    [ -n "$1" ] && export CURRENT_LOG_LEVEL="$1"
-}
+if ! source "global_fn.sh"; then
+    echo -e "\033[0;31m[ERROR]\033[0m unable to source global_fn.sh..."
+    exit 1
+fi
+export CURRENT_LOG_LEVEL=0
 
 # 1 .SDKman
 setup_sdkman() {
@@ -164,19 +162,15 @@ setup_brave_catppuccin() {
 }
 
 
-main() {
-    init "$1"
-    setup_sdkman
-    setup_spotify
-    setup_tmux_neovim
-    # remove_wallbash_discord
-    disable_poweroff_btn
-    setup_sddm_theme
-    setup_vbox
-    setup_code
-    setup_mariadb
-    setup_keyd
-    setup_brave_catppuccin
-}
-
-main "$1"
+init "$1"
+setup_sdkman
+setup_spotify
+setup_tmux_neovim
+# remove_wallbash_discord
+disable_poweroff_btn
+setup_sddm_theme
+setup_vbox
+setup_code
+setup_mariadb
+setup_keyd
+setup_brave_catppuccin

@@ -26,10 +26,11 @@ EOF
 # import variables and functions
 scrDir=$(dirname "$(realpath "$0")")
 
-if ! source "${scrDir}/global_fn.sh"; then
+if ! source "global_fn.sh"; then
     echo -e "\033[0;31m[ERROR]\033[0m unable to source global_fn.sh..."
     exit 1
 fi
+export CURRENT_LOG_LEVEL=0
 
 if [ "$1" == "--heavy" ]; then
     if ! chk_list "aurhlpr" "${aurList[@]}"; then
