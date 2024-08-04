@@ -99,6 +99,7 @@ fi
 # 10. Keyd
 echoinf "Setting up keyd"
 sudo systemctl enable keyd && sudo systemctl start keyd
+sudo mkdir -p /etc/default/
 sudo sh -c 'cat <<EOF > /etc/keyd/default.conf
 [ids]
 
