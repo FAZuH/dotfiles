@@ -4,6 +4,7 @@ btop
 cava
 downgrade
 encryptpad
+fastfetch
 gnome-clocks
 gromit-mpx
 hyprlock
@@ -14,12 +15,9 @@ luarocks
 mariadb
 multimc-bin
 nautilus
-neofetch
 neovim
 net-tools
 nodejs
-notion-app-electron
-notion-calendar-electron
 noto-fonts-emoji
 npm
 obsidian
@@ -48,4 +46,3 @@ whatsie
 wps-office
 zathura
 zathura-pdf-mupdf
-zed-git
