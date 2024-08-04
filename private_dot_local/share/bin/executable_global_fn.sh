@@ -26,13 +26,17 @@ pkg_installed() {
     #     else
     #         echo "Nano is not installed."
     #     fi
-    local PkgIn=$1
+    local pkg
+    local all_installed=0
 
-    if pacman -Qi "${PkgIn}" &> /dev/null; then
-        return 0
-    else
-        return 1
-    fi
+    for pkg in "$@"; do
+        if ! pacman -Qi "$pkg" &> /dev/null; then
+            echo "$pkg is not installed."
+            all_installed=1
+        fi
+    done
+
+    return $all_installed
 }
 
 chk_list() {
