@@ -5,11 +5,11 @@
 #|/ /---+--------------------------------------+/ /---|#
 
 init() {
-    scrDir=$(dirname "$(realpath "$0")")
-    if ! source "${scrDir}/global_fn.sh"; then
+    if ! source "global_fn.sh"; then
         echo -e "\033[0;31m[ERROR]\033[0m unable to source global_fn.sh..."
         exit 1
     fi
+    [ -n "$1" ] && export CURRENT_LOG_LEVEL="$1"
 }
 
 # 1 .SDKman
@@ -165,7 +165,7 @@ setup_brave_catppuccin() {
 
 
 main() {
-    init
+    init "$1"
     setup_sdkman
     setup_spotify
     setup_tmux_neovim
@@ -179,4 +179,4 @@ main() {
     setup_brave_catppuccin
 }
 
-main
+main "$1"

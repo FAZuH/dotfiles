@@ -178,22 +178,53 @@ prompt_timer() {
     set -e
 }
 
+
+#---------#
+# Logging #
+#---------#
+#
+LOG_LEVEL_SKIP=1
+LOG_LEVEL_INFO=2
+LOG_LEVEL_WARN=3
+LOG_LEVEL_ERROR=4
+LOG_LEVEL_SUCCESS=5
+
+CURRENT_LOG_LEVEL=$LOG_LEVEL_WARN
+
+_checkloglevel() {
+    if [ "$CURRENT_LOG_LEVEL" -ge "$1" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Function to log skip messages
 echoskp() {
     local message="$1"
-    echo -e "\033[0;33m[SKIP]\033[0m $message"
+    _checkloglevel "$LOG_LEVEL_SKIP" && echo -e "\033[0;33m[SKIP]\033[0m $message"
 }
 
+# Function to log informational messages
 echoinf() {
     local message="$1"
-    echo -e "\033[0;34m[INFO]\033[0m $message"
+    _checkloglevel "$LOG_LEVEL_INFO" && echo -e "\033[0;34m[INFO]\033[0m $message"
 }
 
+# Function to log warning messages
+echowrn() {
+    local message="$1"
+    _checkloglevel "$LOG_LEVEL_WARN" && echo -e "\033[0;33m[WARNING]\033[0m $message"
+}
+
+# Function to log error messages
 echoerr() {
     local message="$1"
-    echo -e "\033[0;31m[ERROR]\033[0m $message"
+    _checkloglevel "$LOG_LEVEL_ERROR" && echo -e "\033[0;31m[ERROR]\033[0m $message"
 }
 
+# Function to log success messages
 echoscs() {
     local message="$1"
-    echo -e "\033[0;32m[SUCCESS]\033[0m $message"
+    _checkloglevel "$LOG_LEVEL_SUCCESS" && echo -e "\033[0;32m[SUCCESS]\033[0m $message"
 }
