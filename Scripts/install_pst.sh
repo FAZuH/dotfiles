@@ -106,15 +106,7 @@ sudo sh -c 'cat <<EOF > /etc/keyd/default.conf
 
 [main]
 
-shift = oneshot(shift)
-meta = oneshot(meta)
-control = oneshot(control)
-
-leftalt = oneshot(alt)
-rightalt = oneshot(altgr)
-
 capslock = overload(control, esc)
-insert = S-insert
 EOF'
 sudo keyd reload
 echoscs "Successfully set up keyd"
