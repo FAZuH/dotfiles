@@ -5,8 +5,8 @@ return {
   init = function()
     require("lualine").setup({
       options = {
-        -- theme = "catppuccin",
-        theme = "tokyonight",
+        theme = "catppuccin",
+        -- theme = "tokyonight",
       },
     })
   end,
