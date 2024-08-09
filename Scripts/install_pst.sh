@@ -18,10 +18,19 @@ setup_sdkman() {
 # 2. Setup Spotify
 setup_spotify() {
     echoinf "Setting up spotify..."
+    if ! pkg_installed "spicetify-cli" "spicetify-marketplace-bin"; then
+        echoerr "spicetify-cli or spicetify-marketplace-bin is not installed"
+    fi
     if [ ! -d "/opt/spotify/" ] || [ ! -d "/opt/spotify/Apps/" ]; then
         echoerr "/opt/spotify/Apps doesn't exist"
     fi
     sudo chmod a+wr /opt/spotify && sudo chmod a+wr /opt/spotify/Apps -R;
+    spicetify backup apply
+    spicetify config inject_css 1
+    spicetify config replace_colors 1
+    spicetify config current_theme marketplace
+    spicetify config custom_apps marketplace
+    spicetify apply
     echoscs "Successfully set up spotify"
 }
 
